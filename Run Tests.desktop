@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Run Tests
+Comment=Checks virtual machine setup
+Exec=gnome-terminal -- bash -i -c 'source ~/.bashrc && /home/wishuser/scripts/init_tests.sh; exec bash'
+Icon=utilities-terminal
+Terminal=false
+Type=Application
+Categories=Utility

@@ -6,10 +6,10 @@ sudo apt-get upgrade
 sudo apt-get upgrade ubuntu-drivers-common
 
 # Required packages
-sudo apt install virtualbox-guest-utils virtualbox-guest-xli
+sudo apt install virtualbox-guest-utils virtualbox-guest-x11
 
 sudo apt install python-is-python3
-sudo apt install vim vim-gtk
+sudo apt install vim vim-gtk3
 sudo apt install git
 
 sudo apt install iverilog gtkwave
@@ -31,6 +31,22 @@ code --install-extension verilog-hdl-code-ext.vsix
 
 sudo apt install libreoffice
 
+cd ~
+RISCV_INSTALL_PATH="$PWD/riscv"
+cd ~/Downloads
+sudo apt-get install autoconf automake autotools-dev curl python3-tomli libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev ninja-build cmake libglib2.0-dev libslirp-dev 
+git clone https://github.com/riscv/riscv-gnu-toolchain
+cd riscv-gnu-toolchain
+git submodule update --init --recursive
+
+PATH="$PATH:$RISCV_INSTALL_PATH/bin"
+./configure --prefix=$RISCV_INSTALL_PATH
+gmake -sj4 linux
+
+LINE="export PATH=\"$RISCV_INSTALL_PATH/bin:\$PATH\""
+if !(grep -Fxq "$LINE" ~/.bashrc); then
+	echo "$LINE" >> ~/.bashrc
+fi
 
 # Setting timezone
 sudo timedatectl set-timezone Asia/Kolkata

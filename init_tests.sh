@@ -67,7 +67,7 @@ host google.com &> /dev/null && result_ok "DNS is working (resolved google.com)"
 
 # Essential Packages
 heading "Checking Essential Packages"
-ESSENTIAL_PACKAGES=(git python vim gvim iverilog gtkwave code)
+ESSENTIAL_PACKAGES=(git python vim gvim iverilog gtkwave code libreoffice riscv64-unknown-linux-gnu-gcc)
 for pkg in "${ESSENTIAL_PACKAGES[@]}"; do
 	if command -v "$pkg" >/dev/null 2>&1; then
 		echo -e " - ${pkg}: ${GREEN}Installed${NC}"
@@ -115,7 +115,7 @@ fi
 heading "Python virtual environment sanity check"
 
 REQ_PY_VER="3.12"
-REQ_PKG=(cocotb numpy)
+REQ_PKG=(cocotb)
 VENV_DIR="/home/wishuser/wish_venv"
 
 if [ ! -d "$VENV_DIR" ]; then
@@ -159,9 +159,12 @@ fi
 # Lab directory test
 heading "Checking lab contents"
 
-LAB_DIR="/home/wishuser/labs"
+LAB_DIR="/home/wishuser/wish25-course"
 if [ -d $LAB_DIR ]; then
 	result_ok "Lab content found :: ${BOLD}Path for Labs${NC} ${CYAN}$LAB_DIR${NC}"
+	echo "Pulling from GitHub"
+	cd $LAB_DIR
+	git pull origin master
 else
 	result_fail "Lab content NOT found at $LAB_DIR"
 fi
