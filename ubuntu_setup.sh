@@ -40,8 +40,8 @@ cd riscv-gnu-toolchain
 git submodule update --init --recursive
 
 PATH="$PATH:$RISCV_INSTALL_PATH/bin"
-./configure --prefix=$RISCV_INSTALL_PATH
-gmake -sj2
+sudo ./configure --prefix=$RISCV_INSTALL_PATH
+sudo gmake -sj2
 
 LINE="export PATH=\"$RISCV_INSTALL_PATH/bin:\$PATH\""
 if !(grep -Fxq "$LINE" ~/.bashrc); then
