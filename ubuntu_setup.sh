@@ -11,6 +11,7 @@ sudo apt install virtualbox-guest-utils virtualbox-guest-x11
 sudo apt install python-is-python3
 sudo apt install vim vim-gtk3
 sudo apt install git
+sudo apt install gh
 
 sudo apt install iverilog gtkwave
 sudo apt install python3-pip
