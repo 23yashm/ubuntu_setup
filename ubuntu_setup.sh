@@ -31,8 +31,7 @@ code --install-extension verilog-hdl-code-ext.vsix
 
 sudo apt install libreoffice
 
-cd ~
-RISCV_INSTALL_PATH="$PWD/riscv"
+RISCV_INSTALL_PATH="/opt/riscv"
 cd ~/Downloads
 sudo apt-get install autoconf automake autotools-dev curl python3-tomli libmpc-dev libmpfr-dev libgmp-dev gawk build-essential bison flex texinfo gperf libtool patchutils bc zlib1g-dev libexpat-dev ninja-build cmake libglib2.0-dev libslirp-dev 
 git clone https://github.com/riscv/riscv-gnu-toolchain
@@ -41,7 +40,7 @@ git submodule update --init --recursive
 
 PATH="$PATH:$RISCV_INSTALL_PATH/bin"
 ./configure --prefix=$RISCV_INSTALL_PATH
-gmake -sj4 linux
+gmake -sj2
 
 LINE="export PATH=\"$RISCV_INSTALL_PATH/bin:\$PATH\""
 if !(grep -Fxq "$LINE" ~/.bashrc); then

@@ -67,7 +67,7 @@ host google.com &> /dev/null && result_ok "DNS is working (resolved google.com)"
 
 # Essential Packages
 heading "Checking Essential Packages"
-ESSENTIAL_PACKAGES=(git python vim gvim iverilog gtkwave code libreoffice riscv64-unknown-linux-gnu-gcc)
+ESSENTIAL_PACKAGES=(git python vim gvim iverilog gtkwave code libreoffice gh riscv64-unknown-elf-gcc)
 for pkg in "${ESSENTIAL_PACKAGES[@]}"; do
 	if command -v "$pkg" >/dev/null 2>&1; then
 		echo -e " - ${pkg}: ${GREEN}Installed${NC}"
@@ -164,7 +164,11 @@ if [ -d $LAB_DIR ]; then
 	result_ok "Lab content found :: ${BOLD}Path for Labs${NC} ${CYAN}$LAB_DIR${NC}"
 	echo "Pulling from GitHub"
 	cd $LAB_DIR
-	git pull origin master
+	if GIT_ASKPASS=true git ls-remote &>/dev/null; then
+		git pull origin master
+	else
+		result_fail "Login required"
+	fi
 else
 	result_fail "Lab content NOT found at $LAB_DIR"
 fi
