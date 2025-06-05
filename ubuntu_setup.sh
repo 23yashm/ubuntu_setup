@@ -56,3 +56,13 @@ new_favs="['firefox_firefox.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.T
 gsettings set org.gnome.shell favorite-apps "$new_favs"
 
 
+# Reducing image size
+echo "delete content of Downloads manually"
+sudo apt clean
+sudo journalctl --vacuum-time=2d
+sudo dd if=/dev/zero of=/zerofile bs=1M
+sudo rm /zerofile
+sudo reboot
+#
+# On windows:
+# "C:\Program Files\Oracle\VirtualBox\VBoxManage.exe" modifymedium "vdi-disk-path" --compact

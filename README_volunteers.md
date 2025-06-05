@@ -1,9 +1,9 @@
 Setup VirtualBox
-1. Visit https://www.virtualbox.org/wiki/Downloads
-2. Download and install appropriate platform package
+1. Download appropriate image from google drive (AMD64 or ARM based on your system)
+2. Visit https://www.virtualbox.org/wiki/Downloads and download and install appropriate platform package
 3. Open "Oracle VirtualBox Manager"
-4. Click on "Add" to add .ova image (AMD64 or ARM based on your system)
-5. Open the image by double clicking over it.
+4. Click on "Import" to add downloaded .ova image 
+5. Once loaded, open the image by double clicking over it (in the left panel)
 6. Login into Ubuntu. Password for wishuser: wish2025
 7. Double click on "Run Tests" icon on desktop to run tests
 
@@ -22,7 +22,7 @@ Setup Github on VirtualBox
 8. Type `y` and press enter
 9. Select "Login with a web browser" and press enter
 10. Copy the one-time code and press enter
-11. Web browser will open, follow the process there (paste the one-time code copied in 10th step) and grant GitHub access
+11. Web browser will open, follow the process there (paste the one-time code copied in 10th step) and authorize github
 
 12. Run following commands replacing your <emaiid> and <name>
     ```
