@@ -58,7 +58,8 @@ echo -e "\n${YELLOW}${BOLD}#### SECTION 2: System Tests ####${NC}"
 
 # Internet connectivity
 heading "Checking Internet Connectivity"
-ping -c 1 8.8.8.8 &> /dev/null && result_ok "Internet is reachable (ping to 8.8.8.8)" || result_fail "No internet connection (ping failed)"
+ping -c 1 8.8.8.8 &> /dev/null && result_ok "ping working" || result_fail "ping not working"
+curl google.com &> /dev/null && result_ok "curl working" || result_fail "curl not working"
 
 # DNS resolution
 heading "Checking DNS Resolution"
@@ -67,7 +68,7 @@ host google.com &> /dev/null && result_ok "DNS is working (resolved google.com)"
 
 # Essential Packages
 heading "Checking Essential Packages"
-ESSENTIAL_PACKAGES=(git python vim gvim iverilog gtkwave code libreoffice gh riscv64-unknown-elf-gcc)
+ESSENTIAL_PACKAGES=(git python vim gvim iverilog gtkwave code libreoffice gh riscv32-unknown-elf-gcc)
 for pkg in "${ESSENTIAL_PACKAGES[@]}"; do
 	if command -v "$pkg" >/dev/null 2>&1; then
 		echo -e " - ${pkg}: ${GREEN}Installed${NC}"
