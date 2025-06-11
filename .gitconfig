@@ -1,0 +1,6 @@
+[log]
+	decorate = auto
+[alias]
+	lg = log --color --all --graph --date-order --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	st = status
+

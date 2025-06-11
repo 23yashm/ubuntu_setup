@@ -1,0 +1,6 @@
+# ~/.gtkwaverc
+
+fontname_signals Monospace 12
+fontname_waves Monospace 12
+do_initial_zoom_fit yes
+
