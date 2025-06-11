@@ -40,7 +40,7 @@ cd riscv-gnu-toolchain
 git submodule update --init --recursive
 
 PATH="$PATH:$RISCV_INSTALL_PATH/bin"
-sudo ./configure --prefix=$RISCV_INSTALL_PATH
+sudo ./configure --prefix=$RISCV_INSTALL_PATH --with-arch=rv32im_zicsr --with-abi=ilp32 --with-multilib-generator="rv32im_zicsr-ilp32--"
 sudo gmake -sj2
 
 LINE="export PATH=\"$RISCV_INSTALL_PATH/bin:\$PATH\""
