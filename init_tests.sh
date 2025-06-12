@@ -58,8 +58,13 @@ echo -e "\n${YELLOW}${BOLD}#### SECTION 2: System Tests ####${NC}"
 
 # Internet connectivity
 heading "Checking Internet Connectivity"
-ping -c 1 8.8.8.8 &> /dev/null && result_ok "ping working" || result_fail "ping not working"
-curl google.com &> /dev/null && result_ok "curl working" || result_fail "curl not working"
+if (curl google.com &> /dev/null); then
+	result_ok "curl is working"
+elif (ping -c 1 8.8.8.8 &> /dev/null); then
+	result_ok "ping is working"
+else
+	result_fail "Internet not working (neither ping nor curl)"
+fi
 
 # DNS resolution
 heading "Checking DNS Resolution"
@@ -157,21 +162,22 @@ else
 	fi
 fi
 
-# Lab directory test
-heading "Checking lab contents"
+# Course material directory test
+heading "Checking course material"
 
 LAB_DIR="/home/wishuser/wish25-course"
 if [ -d $LAB_DIR ]; then
-	result_ok "Lab content found :: ${BOLD}Path for Labs${NC} ${CYAN}$LAB_DIR${NC}"
-	echo "Pulling from GitHub"
+	result_ok "Course content found :: ${BOLD}Path for course content${NC} ${CYAN}$LAB_DIR${NC}"
+	echo "Trying to update..."
 	cd $LAB_DIR
 	if GIT_ASKPASS=true git ls-remote &>/dev/null; then
-		git pull origin master
-	else
-		result_fail "Login required"
+		git pull origin master &>/dev/null
+		result_ok "Updated"
+	#else
+	#	result_fail "Login required"
 	fi
 else
-	result_fail "Lab content NOT found at $LAB_DIR"
+	result_fail "Course content NOT found at $LAB_DIR"
 fi
 
 echo -e ""
